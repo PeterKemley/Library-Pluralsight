@@ -20,8 +20,13 @@ app.set('view engine', 'ejs');
 
 bookRouter.route('/')
   .get((req, res) => {
-    res.send('Hello Books!');
-  });
+    res.render(
+      'books',
+      {
+        nav: [{ link: '/books', title: 'Books' },
+          { link: '/authors', title: 'Authors' }],
+        title: 'Library'
+      });
 
 bookRouter.route('/single')
   .get((req, res) => {
@@ -33,8 +38,8 @@ app.get('/', (req, res) => {
   res.render(
     'index',
     {
-      nav: [{ link: '/books', title: 'books' },
-        { link: '/Authors', title: 'Authors' }],
+      nav: [{ link: '/books', title: 'Books' },
+        { link: '/authors', title: 'Authors' }],
       title: 'Library'
     }
   );
