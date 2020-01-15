@@ -24,26 +24,25 @@ bookRouter.route('/')
       'books',
       {
         nav: [{ link: '/books', title: 'Books' },
-          { link: '/authors', title: 'Authors' }],
+        { link: '/authors', title: 'Authors' }],
         title: 'Library'
       });
 
-bookRouter.route('/single')
-  .get((req, res) => {
-    res.send('Hello Book!');
-  });
+    bookRouter.route('/single')
+      .get((req, res) => {
+        res.send('Hello Book!');
+      });
 
-app.use('/books', bookRouter);
-app.get('/', (req, res) => {
-  res.render(
-    'index',
-    {
-      nav: [{ link: '/books', title: 'Books' },
-        { link: '/authors', title: 'Authors' }],
-      title: 'Library'
-    }
-  );
-  // eslint-disable-next-line no-console
-  console.log(chalk.blue(`Listening on port: ${port}`));
-  debug(`Listening on port ${chalk.green(port)}`);
-}).listen(port);
+    app.use('/books', bookRouter);
+    app.get('/', (req, res) => {
+      res.render(
+        'index',
+        {
+          nav: [{ link: '/books', title: 'Books' },
+          { link: '/authors', title: 'Authors' }],
+          title: 'Library'
+        });
+      // eslint-disable-next-line no-console
+      console.log(chalk.blue(`Listening on port: ${port}`));
+      debug(`Listening on port ${chalk.green(port)}`);
+    }).listen(port);
