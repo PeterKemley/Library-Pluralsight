@@ -21,6 +21,7 @@ const nav = [
   { link: '/authors', title: 'Author' }
 ];
 
+// eslint-disable-next-line import/no-unresolved
 const bookRouter = require('./src/routes/bookRoutes')(nav);
 
 app.use('/books', bookRouter);
@@ -29,7 +30,7 @@ app.get('/', (req, res) => {
     'index',
     {
       nav: [{ link: '/books', title: 'Books' },
-      { link: '/authors', title: 'Authors' }],
+        { link: '/authors', title: 'Authors' }],
       title: 'Library'
     }
   );
