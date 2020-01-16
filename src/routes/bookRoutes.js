@@ -1,15 +1,15 @@
 const express = require('express');
 const { MongoClient, ObjectID } = require('mongodb');
 const debug = require('debug')('app:bookRoutes');
-const fs = require('fs');
+// const fs = require('fs');
 
 const bookRouter = express.Router();
-const jsonContent = JSON.parse(fs.readFileSync('credentials.JSON'));
+// const jsonContent = JSON.stringify('./credentials.json');
 
 function router(nav) {
   bookRouter.route('/')
     .get((req, res) => {
-      const url = jsonContent.connection;
+      const url = 'mongodb+srv://Peter:peter12345@cluster0-24b5y.mongodb.net/test?retryWrites=true&w=majority';
       const dbName = 'libraryApp';
 
       (async function mongo() {
@@ -42,7 +42,9 @@ function router(nav) {
   bookRouter.route('/:id')
     .get((req, res) => {
       const { id } = req.params;
-      const url = jsonContent.connection;
+      // eslint-disable-next-line max-len
+      // MAKE MONGODB CONNECTION STRING AVAILABLE THROUGH A VARIABLE ADD CREDENTIAL FILE TO .GITIGNORE
+      const url = 'mongodb+srv://Peter:peter12345@cluster0-24b5y.mongodb.net/test?retryWrites=true&w=majority';
       const dbName = 'libraryApp';
 
       (async function mongo() {

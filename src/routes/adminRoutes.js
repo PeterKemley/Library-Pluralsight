@@ -1,10 +1,10 @@
 const express = require('express');
 const { MongoClient } = require('mongodb');
 const debug = require('debug')('app:adminRoutes');
-const fs = require('fs');
+// const fs = require('fs');
 
 // eslint-disable-next-line no-useless-escape
-const jsonContent = JSON.parse(fs.readFileSync('credentials.JSON'));
+// const jsonContent = JSON.stringify(fs.readFileSync('./credential.json'));
 
 const adminRouter = express.Router();
 const books = [
@@ -61,7 +61,9 @@ const books = [
 function router(nav) {
   adminRouter.route('/')
     .get((req, res) => {
-      const url = jsonContent.connection;
+      // eslint-disable-next-line max-len
+      // MAKE MONGODB CONNECTION STRING AVAILABLE THROUGH A VARIABLE ADD CREDENTIAL FILE TO .GITIGNORE
+      const url = 'mongodb+srv://Peter:peter12345@cluster0-24b5y.mongodb.net/test?retryWrites=true&w=majority';
       const dbName = 'libraryApp';
       (async function mongo() {
         let client;
@@ -71,17 +73,14 @@ function router(nav) {
           res.send('Inserting Books!');
           res.end();
           const db = client.db(dbName);
-
           const response = await db.collection('books').insertMany(books);
           res.json(response);
         } catch (err) {
           debug(err.stack);
         }
-
         client.close();
       }());
     });
   return adminRouter;
 }
-
 module.exports = router;
