@@ -22,7 +22,9 @@ const nav = [
 ];
 
 const bookRouter = require('./src/routes/bookRoutes')(nav);
+const adminRouter = require('./src/routes/adminRoutes')(nav);
 
+app.use('/admin', adminRouter);
 app.use('/books', bookRouter);
 app.get('/', (req, res) => {
   res.render(
