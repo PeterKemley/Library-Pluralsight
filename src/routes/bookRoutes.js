@@ -1,13 +1,15 @@
 const express = require('express');
 const { MongoClient, ObjectID } = require('mongodb');
 const debug = require('debug')('app:bookRoutes');
+const fs = require('fs');
 
 const bookRouter = express.Router();
+const jsonContent = JSON.parse(fs.readFileSync('credentials.JSON'));
 
 function router(nav) {
   bookRouter.route('/')
     .get((req, res) => {
-      const url = 'mongodb+srv://Peter:peter12345@cluster0-24b5y.mongodb.net/test?retryWrites=true&w=majority';
+      const url = jsonContent.connection;
       const dbName = 'libraryApp';
 
       (async function mongo() {
@@ -40,7 +42,7 @@ function router(nav) {
   bookRouter.route('/:id')
     .get((req, res) => {
       const { id } = req.params;
-      const url = 'mongodb+srv://Peter:peter12345@cluster0-24b5y.mongodb.net/test?retryWrites=true&w=majority';
+      const url = jsonContent.connection;
       const dbName = 'libraryApp';
 
       (async function mongo() {
@@ -70,6 +72,4 @@ function router(nav) {
     });
   return bookRouter;
 }
-
-
 module.exports = router;

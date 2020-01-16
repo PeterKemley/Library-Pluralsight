@@ -1,6 +1,10 @@
 const express = require('express');
 const { MongoClient } = require('mongodb');
 const debug = require('debug')('app:adminRoutes');
+const fs = require('fs');
+
+// eslint-disable-next-line no-useless-escape
+const jsonContent = JSON.parse(fs.readFileSync('credentials.JSON'));
 
 const adminRouter = express.Router();
 const books = [
@@ -53,17 +57,19 @@ const books = [
     read: false
   }];
 
+// eslint-disable-next-line no-unused-vars
 function router(nav) {
   adminRouter.route('/')
     .get((req, res) => {
-      const url = 'mongodb+srv://Peter:peter12345@cluster0-24b5y.mongodb.net/test?retryWrites=true&w=majority';
+      const url = jsonContent.connection;
       const dbName = 'libraryApp';
       (async function mongo() {
         let client;
         try {
           client = await MongoClient.connect(url);
           debug('Connected correctly to server');
-
+          res.send('Inserting Books!');
+          res.end();
           const db = client.db(dbName);
 
           const response = await db.collection('books').insertMany(books);
