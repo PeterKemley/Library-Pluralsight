@@ -4,6 +4,10 @@ const debug = require('debug')('app');
 const morgan = require('morgan');
 const path = require('path');
 const bodyparser = require('body-parser');
+const passport = require('passport');
+const cookieParser = require('cookie-parser');
+const session = require('express-session');
+
 
 const app = express();
 const port = process.env.PORT || 4000;
@@ -11,6 +15,11 @@ const port = process.env.PORT || 4000;
 app.use(morgan('tiny'));
 app.use(bodyparser.json());
 app.use(bodyparser.urlencoded({ extended: false }));
+app.use(cookieParser());
+app.use(session({ secret: 'library' }));
+
+require('./src/config/passport.js')(app);
+
 app.use(express.static(path.join(__dirname, '/public/')));
 app.use('/css', express.static(path.join(__dirname, '/node_modules/bootstrap/dist/css')));
 app.use('/js', express.static(path.join(__dirname, '/node_modules/bootstrap/dist/js')));
