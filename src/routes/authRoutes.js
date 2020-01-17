@@ -9,7 +9,7 @@ function router(nav) {
   authRouter.route('/signUp')
     .post((req, res) => {
       const { username, password } = req.body;
-      const url = 'mongodb://localhost:27017';
+      const url = 'mongodb+srv://Peter:peter12345@cluster0-24b5y.mongodb.net/test?retryWrites=true&w=majority';
       const dbName = 'libraryApp';
 
       (async function addUser() {

@@ -58,7 +58,7 @@ const books = [
 function router(nav) {
   adminRouter.route('/')
     .get((req, res) => {
-      const url = 'mongodb://localhost:27017';
+      const url = 'mongodb+srv://Peter:peter12345@cluster0-24b5y.mongodb.net/test?retryWrites=true&w=majority';
       const dbName = 'libraryApp';
 
       (async function mongo() {
