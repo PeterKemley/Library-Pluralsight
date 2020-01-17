@@ -1,7 +1,6 @@
 const express = require('express');
 const { MongoClient } = require('mongodb');
 const debug = require('debug')('app:adminRoutes');
-// const fs = require('fs');
 
 // eslint-disable-next-line no-useless-escape
 // const jsonContent = JSON.stringify(fs.readFileSync('./credential.json'));
