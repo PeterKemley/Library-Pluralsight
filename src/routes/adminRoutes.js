@@ -2,21 +2,20 @@ const express = require('express');
 const { MongoClient } = require('mongodb');
 const debug = require('debug')('app:adminRoutes');
 
-// eslint-disable-next-line no-useless-escape
-// const jsonContent = JSON.stringify(fs.readFileSync('./credential.json'));
-
 const adminRouter = express.Router();
 const books = [
   {
     title: 'War and Peace',
     genre: 'Historical Fiction',
     author: 'Lev Nikolayevich Tolstoy',
+    bookId: 656,
     read: false
   },
   {
     title: 'Les Misérables',
     genre: 'Historical Fiction',
     author: 'Victor Hugo',
+    bookId: 24280,
     read: false
   },
   {
@@ -56,30 +55,30 @@ const books = [
     read: false
   }];
 
-// eslint-disable-next-line no-unused-vars
 function router(nav) {
   adminRouter.route('/')
     .get((req, res) => {
-      // eslint-disable-next-line max-len
-      // MAKE MONGODB CONNECTION STRING AVAILABLE THROUGH A VARIABLE ADD CREDENTIAL FILE TO .GITIGNORE
-      const url = 'mongodb+srv://Peter:peter12345@cluster0-24b5y.mongodb.net/test?retryWrites=true&w=majority';
+      const url = 'mongodb://localhost:27017';
       const dbName = 'libraryApp';
+
       (async function mongo() {
         let client;
         try {
           client = await MongoClient.connect(url);
           debug('Connected correctly to server');
-          res.send('Inserting Books!');
-          res.end();
+
           const db = client.db(dbName);
+
           const response = await db.collection('books').insertMany(books);
           res.json(response);
         } catch (err) {
           debug(err.stack);
         }
+
         client.close();
       }());
     });
   return adminRouter;
 }
+
 module.exports = router;

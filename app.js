@@ -8,7 +8,6 @@ const passport = require('passport');
 const cookieParser = require('cookie-parser');
 const session = require('express-session');
 
-
 const app = express();
 const port = process.env.PORT || 4000;
 
