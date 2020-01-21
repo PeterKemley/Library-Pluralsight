@@ -22,36 +22,42 @@ const books = [
     title: 'The Time Machine',
     genre: 'Science Fiction',
     author: 'H. G. Wells',
+    bookID: 2493,
     read: false
   },
   {
     title: 'A Journey into the Center of the Earth',
     genre: 'Science Fiction',
     author: 'Jules Verne',
+    bookID: 32829,
     read: false
   },
   {
     title: 'The Dark World',
     genre: 'Fantasy',
     author: 'Henry Kuttner',
+    bookID: 1881716,
     read: false
   },
   {
     title: 'The Wind in the Willows',
     genre: 'Fantasy',
     author: 'Kenneth Grahame',
+    bookID: 5659,
     read: false
   },
   {
     title: 'Life On The Mississippi',
     genre: 'History',
     author: 'Mark Twain',
+    bookID: 99152,
     read: false
   },
   {
     title: 'Childhood',
     genre: 'Biography',
     author: 'Lev Nikolayevich Tolstoy',
+    bookID: 226377,
     read: false
   }];
 

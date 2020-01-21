@@ -57,5 +57,4 @@ function router(nav) {
   return authRouter;
 }
 
-
 module.exports = router;
