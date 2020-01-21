@@ -3,7 +3,7 @@ const debug = require('debug')('app:bookController');
 
 function bookController(bookService, nav) {
   function getIndex(req, res) {
-    const url = 'mongodb://localhost:27017';
+    const url = 'mongodb+srv://Peter:peter12345@cluster0-24b5y.mongodb.net/test?retryWrites=true&w=majority';
     const dbName = 'libraryApp';
 
     (async function mongo() {
@@ -34,7 +34,7 @@ function bookController(bookService, nav) {
   }
   function getById(req, res) {
     const { id } = req.params;
-    const url = 'mongodb://localhost:27017';
+    const url = 'mongodb+srv://Peter:peter12345@cluster0-24b5y.mongodb.net/test?retryWrites=true&w=majority';
     const dbName = 'libraryApp';
 
     (async function mongo() {
