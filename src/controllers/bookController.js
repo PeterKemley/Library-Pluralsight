@@ -64,12 +64,16 @@ function bookController(bookService, nav) {
       }
     }());
   }
+  // Middleware used to stop user from accessing the books without being logged in
   function middleware(req, res, next) {
-    // if (req.user) {
-    next();
-    // } else {
-    // res.redirect('/');
-    // }
+    // IF there is a user
+    if (req.user) {
+      // Next (moves onto else)
+      next();
+      // Else Redirect to /
+    } else {
+      res.redirect('/');
+    }
   }
   return {
     getIndex,
